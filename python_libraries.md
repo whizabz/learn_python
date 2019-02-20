@@ -121,14 +121,11 @@ PyPi Documentation: https://pypi.org/project/progressbar2/
 
 Sample Code:
 ```
-CommandLinePython
-
 from progressbar import * import time  
   
 progress = ProgressBar()  
 for i in progress(range(80)):
-
- time.sleep(0.01) 
+	time.sleep(0.01) 
 ```
 
 Output:
