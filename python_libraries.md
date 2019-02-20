@@ -6,7 +6,7 @@ Credit: https://github.com/judy2k/command-line-talk
 
 ## Command Line Parsing Libraries
 * Built-in
-  - getopt
+  - getopt 
   - optparse
   - argparse
 * 3rd Party
@@ -34,9 +34,11 @@ LOG.warning('EVERYTHING HAS GONE WRONG!')
 
 Sample code:
 ```
-from sys import stdin, stdout, stderr  
-  
-print "Piped input:", not stdin.isatty() print "Piped output:", not stdout.isatty() print "Piped error:", not stderr.isatty()
+from sys import stdin, stdout, stderr
+
+print "Piped input:", not stdin.isatty()
+print "Piped output:", not stdout.isatty()
+print "Piped error:", not stderr.isatty()
 ```
 
 Output:
@@ -149,7 +151,7 @@ pbar.finish()
 ```
 Output:
 ```
-# Loading:   9% |#                        | ETA:  0:01:42 177.08  B/s
+# Loading:   9% |#                                      | ETA:  0:01:42 177.08  B/s
 ```
 
 ## Configuration
@@ -188,4 +190,64 @@ print config.getint('server', ‘port')
 
 print config.get('server', ‘url’)
 => http://www.ninjarockstar.guru:5000/
+```
+
+## Signals
+
+```
+import signal  
+
+signal.siginterrupt(signal.SIGINFO, False)  
+
+signal.signal(signal.SIGINFO, mysiginfofunc)
+```
+
+**KeyboardInterrupt:**
+```
+def main():
+	try:
+		time.sleep(5)
+	except KeyboardInterrupt:
+		pass
+
+if __name__ == '__main__':
+	main()
+```
+
+## Code Structure & Packaging
+
+Structure:
+```
+mytool-project/
+  setup.py
+  mytool
+  mytoollib/ 
+ __init__.py
+   __main__.py 
+ mytool.py
+   utils.py
+```
+
+setuptools:
+```
+# setup.py
+setup(name = 'mytool',
+    version = '2.0',
+    url = ‘http://mytool.ninjarockstar.guru/',
+    license = 'BSD License',
+    author = ‘Mark Smith',
+    author_email = ‘judy@judy.co.uk’,
+    description = ‘A tool with little purpose.',
+    keywords = 'utils',
+    packages = ‘mytoollib’,
+    scripts = [‘mytool’]
+    platforms = ‘any')
+```
+
+## Exit Codes
+
+```
+# Normal termination exits with 0
+# Uncaught exceptions exit with 1
+# ... or you can explicitly exit: sys.exit(exit_code)
 ```
